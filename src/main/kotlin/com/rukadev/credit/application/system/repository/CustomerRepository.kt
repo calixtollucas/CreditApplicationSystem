@@ -1,4 +1,4 @@
-package com.rukadev.credit.application.system
+package com.rukadev.credit.application.system.repository
 
 import com.rukadev.credit.application.system.model.Customer
 import org.springframework.data.jpa.repository.JpaRepository

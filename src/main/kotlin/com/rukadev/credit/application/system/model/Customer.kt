@@ -26,7 +26,7 @@ data class Customer(
     var address: Address = Address(),
 
     @Column(nullable = false) @OneToMany(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.REMOVE),
-        mappedBy = "customer")
+        mappedBy = "customer_Id")
     var credits: List<Credit> = mutableListOf(),
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
