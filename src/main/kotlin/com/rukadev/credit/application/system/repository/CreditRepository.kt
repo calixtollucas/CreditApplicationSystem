@@ -9,9 +9,9 @@ import java.util.*
 @Repository //um Bean que será gerenciado pelo Spring. Se a classe extende JpaRepository não é necessário
 interface CreditRepository: JpaRepository<Credit, Long> {
 
-    @Query(value="SELECT * FROM CREDIT WHERE CUSTOMER_ID = ?1", nativeQuery = true)
+    @Query(value="SELECT * FROM CREDIT WHERE CREDIT_CODE = ?1", nativeQuery = true)
     fun findByCreditCode(creditCode: UUID): Credit?
 
-    @Query(value="SELECT * FROM CREDIT WHERE ID = ?1", nativeQuery = true)
+    @Query(value="SELECT * FROM CREDIT WHERE CUSTOMER_ID = ?1", nativeQuery = true)
     fun findAllByCustomerId(customerId: Long): List<Credit>
 }

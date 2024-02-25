@@ -1,7 +1,7 @@
 package com.rukadev.credit.application.system.model
 
 import jakarta.persistence.*
-import org.springframework.context.annotation.Primary
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "customer")
@@ -13,10 +13,13 @@ data class Customer(
     var lastName: String = "",
 
     @Column(nullable = false, unique = true)
-    val cpf: String,
+    var cpf: String = "",
 
     @Column(nullable = false, unique = true)
     var email: String = "",
+
+    @Column(nullable = false)
+    var income:BigDecimal = BigDecimal.ZERO,
 
     @Column(nullable = false)
     var password: String = "",
@@ -25,8 +28,8 @@ data class Customer(
     @Embedded
     var address: Address = Address(),
 
-    @Column(nullable = false) @OneToMany(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.REMOVE),
-        mappedBy = "customer_Id")
+    @Column(nullable = false) @OneToMany(fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.REMOVE, CascadeType.PERSIST),
+        mappedBy = "customer") //mappedBy: campo da outra tabela que fará referência ao customer
     var credits: List<Credit> = mutableListOf(),
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

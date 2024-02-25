@@ -1,5 +1,6 @@
 package com.rukadev.credit.application.system.service.impl
 
+import com.rukadev.credit.application.system.exceptions.BusinessException
 import com.rukadev.credit.application.system.model.Customer
 import com.rukadev.credit.application.system.repository.CustomerRepository
 import com.rukadev.credit.application.system.service.ICustomerService
@@ -14,8 +15,12 @@ class CustomerService(
     }
 
     override fun findById(id: Long): Customer {
-        return this.customerRepository.findById(id).orElseThrow { throw RuntimeException("Id $id not found") };
+        return this.customerRepository.findById(id).orElseThrow { throw BusinessException("Id $id not found") };
     }
 
-    override fun deleteById(id: Long) = this.customerRepository.deleteById(id);
+    override fun deleteById(id: Long){
+
+        val customer = customerRepository.findById(id).orElseThrow{BusinessException("Delete not executed, customer not exists")}
+        this.customerRepository.delete(customer);
+    }
 }
