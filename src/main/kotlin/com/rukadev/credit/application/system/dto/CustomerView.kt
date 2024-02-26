@@ -11,6 +11,7 @@ data class CustomerView(
     val email:String,
     val zipCode:String,
     val street:String,
+    val id: Long?
 ) {
 
     constructor(customer: Customer): this(
@@ -20,7 +21,8 @@ data class CustomerView(
         customer.income,
         customer.email,
         customer.address.zipCode,
-        customer.address.street
+        customer.address.street,
+        customer.id
     )
 
 }

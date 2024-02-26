@@ -11,7 +11,7 @@ import java.util.UUID
 data class Credit(
 
     @Column(unique = true, nullable = false)
-    val creditCode: UUID = UUID.randomUUID(),
+    var creditCode: UUID = UUID.randomUUID(),
 
     @Column(nullable = false)
     val creditValue: BigDecimal = BigDecimal.ZERO,
